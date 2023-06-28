@@ -1,8 +1,8 @@
 package io.github.kleberbarilli.mscustomers.application.services;
 
-import org.springframework.stereotype.Service;
+import java.util.Optional;
 
-import com.google.common.base.Optional;
+import org.springframework.stereotype.Service;
 
 import io.github.kleberbarilli.mscustomers.application.domain.entities.Customer;
 import io.github.kleberbarilli.mscustomers.application.infra.repository.CustomerRepository;

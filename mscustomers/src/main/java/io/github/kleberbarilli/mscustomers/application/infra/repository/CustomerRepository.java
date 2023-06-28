@@ -1,8 +1,8 @@
 package io.github.kleberbarilli.mscustomers.application.infra.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
 
-import com.google.common.base.Optional;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import io.github.kleberbarilli.mscustomers.application.domain.entities.Customer;
 
