@@ -22,7 +22,8 @@ public class ICardService {
     }
 
     public List<ICard> getCardsFromIncome(Long income) {
-        return repository.findByIncome(BigDecimal.valueOf(income));
+        BigDecimal userIncome = BigDecimal.valueOf(income);
+        return repository.findByIncome(userIncome);
     }
 
 }
