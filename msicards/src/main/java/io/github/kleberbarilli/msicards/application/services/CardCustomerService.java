@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class CardCustomerService {
 
-    private CardCustomerRepository repository;
+    private final CardCustomerRepository repository;
 
     public List<CardCustomer> findICardsByCpf(String cpf) {
         return repository.findByCpf(cpf);

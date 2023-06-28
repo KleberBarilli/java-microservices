@@ -20,6 +20,7 @@ public class ApigatewayApplication {
 		return builder
 				.routes()
 				.route(r -> r.path("/customers/**").uri("lb://mscustomers"))
+				.route(r -> r.path("/msicards/**").uri("lb://msicards"))
 				.build();
 	}
 
