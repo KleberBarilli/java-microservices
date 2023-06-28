@@ -1,4 +1,4 @@
-package io.github.kleberbarilli.mscustomers.domain;
+package io.github.kleberbarilli.mscustomers.application.domain.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
