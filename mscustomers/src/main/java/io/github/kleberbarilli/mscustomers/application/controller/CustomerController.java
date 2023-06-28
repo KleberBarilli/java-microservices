@@ -16,16 +16,19 @@ import io.github.kleberbarilli.mscustomers.application.domain.dtos.CreateCustome
 import io.github.kleberbarilli.mscustomers.application.domain.entities.Customer;
 import io.github.kleberbarilli.mscustomers.application.services.CustomerService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
 @RequestMapping("customers")
 @RequiredArgsConstructor
+@Slf4j
 public class CustomerController {
 
     private final CustomerService service;
 
     @GetMapping
     public String healthCheck() {
+        log.info("Checking mscustomers status");
         return "ok";
     }
 
