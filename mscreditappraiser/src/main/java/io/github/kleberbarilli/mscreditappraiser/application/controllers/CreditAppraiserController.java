@@ -25,5 +25,7 @@ public class CreditAppraiserController {
     @GetMapping(value = "customer-status", params = "cpf")
     public ResponseEntity<CustomerStatus> getCustomerStatus(@RequestParam("cpf") String cpf) {
         CustomerStatus customerStatus = creditAppraiserService.getCustomerStatus(cpf);
+
+        return ResponseEntity.ok(customerStatus);
     }
 }
