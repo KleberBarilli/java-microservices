@@ -21,7 +21,7 @@ public class ApigatewayApplication {
 				.routes()
 				.route(r -> r.path("/customers/**").uri("lb://mscustomers"))
 				.route(r -> r.path("/icards/**").uri("lb://msicards"))
-				.route(r -> r.path("/credit-appraiser/**").uri("lb://msicreditappraiser"))
+				.route(r -> r.path("/credit-appraiser/**").uri("lb://mscreditappraiser"))
 				.build();
 	}
 
