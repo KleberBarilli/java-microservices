@@ -3,6 +3,7 @@ package io.github.kleberbarilli.mscreditappraiser.application.services;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 import org.springframework.http.HttpStatus;
@@ -13,13 +14,17 @@ import feign.FeignException.FeignClientException;
 import io.github.kleberbarilli.mscreditappraiser.application.domain.AppraiserResponse;
 import io.github.kleberbarilli.mscreditappraiser.application.domain.ApprovedCard;
 import io.github.kleberbarilli.mscreditappraiser.application.domain.Card;
+import io.github.kleberbarilli.mscreditappraiser.application.domain.CardIssuanceProtocol;
+import io.github.kleberbarilli.mscreditappraiser.application.domain.CardIssuanceRequest;
 import io.github.kleberbarilli.mscreditappraiser.application.domain.CustomerCard;
 import io.github.kleberbarilli.mscreditappraiser.application.domain.CustomerData;
 import io.github.kleberbarilli.mscreditappraiser.application.domain.CustomerStatus;
+import io.github.kleberbarilli.mscreditappraiser.application.exceptions.CardIssuanceException;
 import io.github.kleberbarilli.mscreditappraiser.application.exceptions.MsException;
 import io.github.kleberbarilli.mscreditappraiser.application.exceptions.NotFoundException;
 import io.github.kleberbarilli.mscreditappraiser.infra.clients.CardsResourceClient;
 import io.github.kleberbarilli.mscreditappraiser.infra.clients.CustomerResourceClient;
+import io.github.kleberbarilli.mscreditappraiser.infra.mqueue.CardIssuancePublisher;
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -28,6 +33,7 @@ public class CreditAppraiserService {
 
     private final CustomerResourceClient customersClient;
     private final CardsResourceClient cardsClient;
+    private final CardIssuancePublisher cardIssuancePublisher;
 
     public CustomerStatus getCustomerStatus(String cpf) throws NotFoundException, MsException {
 
@@ -81,6 +87,16 @@ public class CreditAppraiserService {
                 throw new NotFoundException("Customer");
             }
             throw new MsException(e.getMessage(), e.status());
+        }
+    }
+
+    public CardIssuanceProtocol cardIssuance(CardIssuanceRequest data) {
+        try {
+            cardIssuancePublisher.cardIssuance(data);
+            var protocol = java.util.UUID.randomUUID().toString();
+            return new CardIssuanceProtocol(protocol);
+        } catch (Exception e) {
+            throw new CardIssuanceException(e.getMessage());
         }
     }
 

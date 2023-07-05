@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import io.github.kleberbarilli.mscreditappraiser.application.domain.AppraiserData;
 import io.github.kleberbarilli.mscreditappraiser.application.domain.AppraiserResponse;
+import io.github.kleberbarilli.mscreditappraiser.application.domain.CardIssuanceProtocol;
+import io.github.kleberbarilli.mscreditappraiser.application.domain.CardIssuanceRequest;
 import io.github.kleberbarilli.mscreditappraiser.application.domain.CustomerStatus;
+import io.github.kleberbarilli.mscreditappraiser.application.exceptions.CardIssuanceException;
 import io.github.kleberbarilli.mscreditappraiser.application.exceptions.MsException;
 import io.github.kleberbarilli.mscreditappraiser.application.exceptions.NotFoundException;
 import io.github.kleberbarilli.mscreditappraiser.application.services.CreditAppraiserService;
@@ -54,6 +57,18 @@ public class CreditAppraiserController {
             return ResponseEntity.notFound().build();
         } catch (MsException e) {
             return ResponseEntity.status(HttpStatus.resolve(e.getStatus())).body(e.getMessage());
+        }
+    }
+
+    @PostMapping("card-request")
+    public ResponseEntity requestCardIssuance(@RequestBody CardIssuanceRequest data) {
+        try {
+            CardIssuanceProtocol cardIssuanceProtocol = creditAppraiserService.cardIssuance(data);
+
+            return ResponseEntity.ok(cardIssuanceProtocol);
+
+        } catch (CardIssuanceException e) {
+            return ResponseEntity.internalServerError().body(e.getMessage());
         }
     }
 }
