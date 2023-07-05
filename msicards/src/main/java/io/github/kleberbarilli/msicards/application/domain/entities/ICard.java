@@ -26,16 +26,16 @@ public class ICard {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "card_brand")
-    private ICardBrand cardBand;
+    private ICardBrand cardBrand;
 
     private BigDecimal income;
 
     @Column(name = "initial_limit")
     private BigDecimal initialLimit;
 
-    public ICard(String name, ICardBrand cardBand, BigDecimal income, BigDecimal initialLimit) {
+    public ICard(String name, ICardBrand cardBrand, BigDecimal income, BigDecimal initialLimit) {
         this.name = name;
-        this.cardBand = cardBand;
+        this.cardBrand = cardBrand;
         this.income = income;
         this.initialLimit = initialLimit;
     }

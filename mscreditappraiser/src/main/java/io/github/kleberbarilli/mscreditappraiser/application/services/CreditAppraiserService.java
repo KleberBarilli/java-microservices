@@ -63,6 +63,7 @@ public class CreditAppraiserService {
 
             List<Card> cards = cardsResponse.getBody();
             var approvedCards = cards.stream().map(card -> {
+                System.out.println("FUCKKKKKK" + cardsResponse);
 
                 BigDecimal limit = card.getInitialLimit();
                 BigDecimal incomeBD = BigDecimal.valueOf(income);
@@ -72,7 +73,7 @@ public class CreditAppraiserService {
 
                 ApprovedCard approvedCard = new ApprovedCard();
                 approvedCard.setCard(card.getName());
-                approvedCard.setBrand(card.getBrand());
+                approvedCard.setBrand(card.getCardBrand());
                 approvedCard.setLimit(incomeBD.add(deviationAmount));
 
                 return approvedCard;

@@ -39,7 +39,7 @@ public class ICardsController {
 
         ICard card = iCardDTO.toEntity();
         iCardService.save(card);
-        return ResponseEntity.status(HttpStatus.CREATED).build();
+        return ResponseEntity.ok(card);
 
     }
 

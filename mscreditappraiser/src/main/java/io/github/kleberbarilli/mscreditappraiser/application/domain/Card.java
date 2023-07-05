@@ -8,7 +8,7 @@ import lombok.Data;
 public class Card {
     private Long id;
     private String name;
-    private String brand;
+    private String cardBrand;
     private BigDecimal initialLimit;
 
 }

@@ -24,7 +24,7 @@ public class CardCustomer {
     private String cpf;
 
     @ManyToOne
-    @JoinColumn(name = "icard_id")
+    @JoinColumn(name = "iCard_id")
     private ICard card;
 
     @Column(name = "card_limit")

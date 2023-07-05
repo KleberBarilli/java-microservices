@@ -18,7 +18,7 @@ public class ICardPerCustomers {
     public static ICardPerCustomers fromModel(CardCustomer cardCustomer) {
         return new ICardPerCustomers(
                 cardCustomer.getCard().getName(),
-                cardCustomer.getCard().getCardBand().toString(),
+                cardCustomer.getCard().getCardBrand().toString(),
                 cardCustomer.getCard().getInitialLimit());
     }
 

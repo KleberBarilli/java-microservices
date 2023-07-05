@@ -10,11 +10,11 @@ import lombok.Data;
 public class ICardDTO {
 
     private String name;
-    private ICardBrand cardBand;
+    private ICardBrand cardBrand;
     private BigDecimal income;
     private BigDecimal initialLimit;
 
     public ICard toEntity() {
-        return new ICard(name, cardBand, income, initialLimit);
+        return new ICard(name, cardBrand, income, initialLimit);
     }
 }
