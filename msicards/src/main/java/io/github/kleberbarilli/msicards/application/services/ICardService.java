@@ -1,6 +1,7 @@
 package io.github.kleberbarilli.msicards.application.services;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -23,7 +24,19 @@ public class ICardService {
 
     public List<ICard> getCardsFromIncome(Long income) {
         BigDecimal userIncome = BigDecimal.valueOf(income);
-        return repository.findByIncome(userIncome);
+
+        List<ICard> allCards = repository.findAll();
+        List<ICard> filteredCards = new ArrayList<>();
+
+        for (ICard card : allCards) {
+
+            if (card.getIncome().compareTo(userIncome) <= 0) {
+                filteredCards.add(card);
+            }
+        }
+
+        return filteredCards;
+
     }
 
 }
