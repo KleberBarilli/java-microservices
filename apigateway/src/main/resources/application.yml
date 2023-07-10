@@ -11,7 +11,7 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          issuer-uri: http://localhost:8081/realms/ms-invest-x/.well-known/openid-configuration
+          issuer-uri: "http://localhost:8081/realms/ms-invest-x"
 
 server:
   port: 8080
